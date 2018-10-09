@@ -22,8 +22,6 @@
   "author": "Paul Vegan",
   "license": "MIT",
   "dependencies": {
-    "ajv": "^6.5.4",
-    "ajv-keywords": "^3.2.0",
     "bcrypt": "^3.0.1",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
