@@ -9,7 +9,7 @@ const cors = require('cors');
 const logger = require('morgan');
 
 // routes
-const users = require('./Routes/api/users');
+const users = require('./routes/api/users');
 const app = express();
 
 // Body parser middleware
