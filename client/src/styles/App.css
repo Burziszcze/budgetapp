@@ -1,0 +1,74 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-size: cover;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/background.jpg');
+  margin-bottom: 60px;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1.5em;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.header {
+  color: #fff;
+  background-color: #000000;
+  background: rgba(0, 0, 0, .8);
+}
+
+.navbar-brand {
+  font-size: 2.5rem;
+}
+
+.logo {
+  margin-right: 5px;
+  /* font-size: 2.5rem; */
+  color: #A0A0A0;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  /* line-height: 60px; */
+  background-color: #202020;
+  color: #fff;
+  background: rgba(0, 0, 0, .3);
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 450px;
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
