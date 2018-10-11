@@ -24,7 +24,7 @@ class Header extends Component {
         </Link>
         </li>
         <li className="nav-item">
-          <a href="" className="nav-link text-info">Welcome {user.name}</a>
+          <a href="" className="nav-link text-light">Welcome {user.name}</a>
         </li>
         <li className="nav-item">
           <a
@@ -63,7 +63,7 @@ class Header extends Component {
           <div className="container">
             <Link className="navbar-brand" to="/">
               <i className="fas fa-money-check-alt logo"></i>
-              Budget app</Link>
+              BudgetApp</Link>
             <button
               className="navbar-toggler"
               type="button"

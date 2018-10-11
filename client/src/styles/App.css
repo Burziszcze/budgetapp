@@ -5,10 +5,10 @@ html {
 
 body {
   background-size: cover;
+  background-position: center;
   background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../img/background.jpg');
   margin-bottom: 60px;
   background-repeat: no-repeat;
-  background-position: center;
   font-family: 'Raleway', sans-serif;
   font-size: 1.5em;
   line-height: 1.6;
@@ -31,6 +31,10 @@ body {
   color: #A0A0A0;
 }
 
+.landing-logo {
+  font-size: 4rem;
+}
+
 .form-wrapper {
   background: rgba(0, 0, 0, .4);
   border-radius: 5px;
@@ -38,17 +42,19 @@ body {
   padding: 10px;
 }
 
-input[type=password],
-input[type=email],
-input[type=text] {
+input[type="password"],
+input[type="email"],
+input[type="name"],
+textarea {
   background-color: transparent !important;
   border: 1px solid #fff !important;
 }
 
-input[type=password],
-input[type=email],
-input[type=text]::-webkit-input-placeholder {
-  color: #fff;
+input[type="password"],
+input[type="email"],
+input[type="name"],
+textarea::-webkit-input-placeholder {
+  color: #fff !important;
   letter-spacing: 1px;
   text-align: center;
 }
@@ -68,18 +74,46 @@ input[type=text]::-webkit-input-placeholder {
   font-size: 16px;
 }
 
-.form-signin .form-control:focus {
-  z-index: 2;
+/* preloader */
+
+.loader {
+  height: 4px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #ddd;
+  z-index: 9999;
 }
 
-.form-signin input[type="email"] {
-  margin-bottom: -1px;
-  /* border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0; */
+.loader:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 200px;
+  height: 4px;
+  background-color: #17a2b8;
+  animation: loading 2s linear infinite;
 }
 
-.form-signin input[type="password"] {
-  margin-bottom: 10px;
-  /* border-top-left-radius: 0;
-  border-top-right-radius: 0; */
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 30%;
+  }
+  50% {
+    width: 30%;
+  }
+  70% {
+    width: 70%;
+  }
+  80% {
+    left: 50%;
+  }
+  95% {
+    left: 120%;
+  }
+  to {
+    left: 100%;
+  }
 }

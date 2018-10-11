@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthtoken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
-// import { clearCurrentProfile } from "./actions/profileActions";
+import { clearCurrentProfile } from "./actions/profileActions";
 
 // redux
 import { Provider } from "react-redux";
@@ -11,9 +11,11 @@ import store from "./store";
 
 // components
 import PrivateRoute from './components/common/PrivateRoute';
+import Landing from "./components/layout/Landing";
 import Header from './components/layout/Header';
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Dashboard from "./components/dashboard/Dashboard";
 
 // import styles
 import './styles/App.css';
@@ -32,7 +34,7 @@ if (localStorage.jwtToken) {
     // Logout user
     store.dispatch(logoutUser());
     // Clear current Profile
-    // store.dispatch(clearCurrentProfile());
+    store.dispatch(clearCurrentProfile());
     // Redirect to login
     window.location.href = '/login';
   }
@@ -45,9 +47,13 @@ class App extends Component {
         <Router>
           <div className="App">
             <Header></Header>
+            <Route exact path="/" component={Landing} />
             <main role="main" className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/Login" component={Login} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
             </main>
           </div>
         </Router>

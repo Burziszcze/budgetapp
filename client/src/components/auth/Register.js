@@ -65,17 +65,18 @@ class Register extends Component {
                 noValidate
                 onSubmit={this.onSubmit}
                 className="form-signin"
+                autoComplete="off"
               >
                 <TextFieldGroup
-                  placeholder="Name"
+                  placeholder="name"
                   name="name"
-                  type="text"
+                  type="name"
                   value={this.state.name}
                   onChange={this.onChange}
                   error={errors.name}
                 />
                 <TextFieldGroup
-                  placeholder="Email"
+                  placeholder="email"
                   name="email"
                   type="email"
                   value={this.state.email}
@@ -83,7 +84,7 @@ class Register extends Component {
                   error={errors.email}
                 />
                 <TextFieldGroup
-                  placeholder="Password"
+                  placeholder="password"
                   name="password"
                   type="password"
                   value={this.state.password}
@@ -98,7 +99,7 @@ class Register extends Component {
                   onChange={this.onChange}
                   error={errors.password2}
                 />
-                <input type="submit" className="btn btn-info btn-block mt-4" />
+                <input type="submit" className="btn btn-light btn-block mt-4" />
               </form>
             </div>
           </div>

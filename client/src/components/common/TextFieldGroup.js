@@ -10,7 +10,7 @@ const TextFieldGroup = ({
   info,
   type,
   onChange,
-  disabled
+  disabled,
 }) => {
   return (
     <div className="form-group">
@@ -24,6 +24,7 @@ const TextFieldGroup = ({
         value={value}
         onChange={onChange}
         disabled={disabled}
+        autoComplete="off"
       />
       {info && <small className="form-text text-muted">{info}</small>}
       {error && (<div className="invalid-feedback">{error}</div>)}
@@ -45,4 +46,3 @@ TextFieldGroup.defaultProps = {
 }
 
 export default TextFieldGroup;
-
