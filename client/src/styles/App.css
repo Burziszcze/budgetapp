@@ -31,15 +31,26 @@ body {
   color: #A0A0A0;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px;
-  /* line-height: 60px; */
-  background-color: #202020;
+.form-wrapper {
+  background: rgba(0, 0, 0, .4);
+  border-radius: 5px;
   color: #fff;
-  background: rgba(0, 0, 0, .3);
+  padding: 10px;
+}
+
+input[type=password],
+input[type=email],
+input[type=text] {
+  background-color: transparent !important;
+  border: 1px solid #fff !important;
+}
+
+input[type=password],
+input[type=email],
+input[type=text]::-webkit-input-placeholder {
+  color: #fff;
+  letter-spacing: 1px;
+  text-align: center;
 }
 
 .form-signin {
@@ -63,12 +74,12 @@ body {
 
 .form-signin input[type="email"] {
   margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
+  /* border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0; */
 }
 
 .form-signin input[type="password"] {
   margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  /* border-top-left-radius: 0;
+  border-top-right-radius: 0; */
 }

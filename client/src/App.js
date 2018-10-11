@@ -12,7 +12,6 @@ import store from "./store";
 // components
 import PrivateRoute from './components/common/PrivateRoute';
 import Header from './components/layout/Header';
-import Footer from './components/layout/Footer';
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 
@@ -50,7 +49,6 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/Login" component={Login} />
             </main>
-            <Footer></Footer>
           </div>
         </Router>
       </Provider>
