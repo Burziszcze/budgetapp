@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
-import Spinner from '../common/Spinner';
-
+import ProfileActions from './ProfileActions';
 
 class Dashboard extends Component {
 
@@ -22,7 +21,7 @@ class Dashboard extends Component {
     let dashboardContent;
 
     if (profile === null || loading) {
-      dashboardContent = <Spinner />;
+      dashboardContent = <div>loading...</div>;
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
@@ -31,6 +30,7 @@ class Dashboard extends Component {
             <h1 className="display-4">Dashboard</h1>
             <p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
             </p>
+            <ProfileActions />
             <div style={{ marginBottom: '60px' }}></div>
             <div className="card text-center">
               <div className="card-body">
@@ -45,7 +45,7 @@ class Dashboard extends Component {
         // User is logged in but has no profile
         dashboardContent = (
           <div>
-            <p className="lead">Welcome {user.name}</p>
+            <p className="lead text-muted">Welcome {user.name}</p>
             <p>You have not yet setup a profile, please add some info</p>
             <Link to="/create-profile" className="btn btn-lg btn-info">
               Create profile
@@ -56,7 +56,7 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="dashboard form-wrapper">
+      <div className="dashboard">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

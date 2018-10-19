@@ -10,6 +10,7 @@ const logger = require('morgan');
 
 // routes
 const users = require('./routes/api/users');
+const budget = require('./routes/api/budget');
 const app = express();
 
 // Body parser middleware
@@ -48,6 +49,8 @@ require('./config/passport')(passport);
 
 // Use Routes
 app.use('/api/users', users);
+app.use('/api/budget', budget);
 
+// set Port
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`server running at port ${port}`));
