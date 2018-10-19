@@ -27,9 +27,8 @@ class Dashboard extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div className="dashboardContent">
-            <h1 className="display-4">Dashboard</h1>
-            <p className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
-            </p>
+            <h3 className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
+            </h3>
             <ProfileActions />
             <div style={{ marginBottom: '60px' }}></div>
             <div className="card text-center">
@@ -56,7 +55,7 @@ class Dashboard extends Component {
     }
 
     return (
-      <div className="dashboard">
+      <div className="dashboard form-wrapper text-center">
         <div className="container">
           <div className="row">
             <div className="col-md-12">
