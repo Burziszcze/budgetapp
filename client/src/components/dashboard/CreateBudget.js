@@ -12,7 +12,7 @@ class CreateBudget extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      total: 0,
+      name: "",
       errors: {}
     };
 
@@ -29,11 +29,11 @@ class CreateBudget extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const itemData = {
-      total: this.state.total
+    const budgetData = {
+      name: this.state.name
     };
 
-    this.props.createBudget(itemData, this.props.history);
+    this.props.createBudget(budgetData, this.props.history);
   }
 
   onChange(e) {
@@ -55,11 +55,10 @@ class CreateBudget extends Component {
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   placeholder="are you millionaire?"
-                  name="total"
-                  type="Number"
-                  value={this.state.total}
+                  name="name"
+                  value={this.state.name}
                   onChange={this.onChange}
-                  error={errors.total}
+                  error={errors.name}
                   info="you can leave this field with sum of zero"
                 />
                 <input

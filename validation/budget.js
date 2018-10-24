@@ -4,33 +4,21 @@ const isEmpty = require("./is-empty");
 module.exports = function validateBudgetSchema(data) {
   let errors = {};
 
-  data.total = !isEmpty(data.total) ? data.total : 0;
-  data.title = !isEmpty(data.title) ? data.title : "";
-  data.description = !isEmpty(data.description) ? data.description : "";
-  data.price = !isEmpty(data.price) ? data.price : "";
+  data.name = !isEmpty(data.name) ? data.name : "";
+  // data.status = !isEmpty(data.status) ? data.status : '';
+  // data.skills = !isEmpty(data.skills) ? data.skills : '';
 
   if (
-    !Validator.isLength(data.title, {
+    !Validator.isLength(data.name, {
       min: 3,
       max: 20
     })
   ) {
-    errors.title = "title needs to between 3 and 20 characters";
+    errors.name = "Budget name needs to between 3 and 20 characters";
   }
 
-  if (
-    Validator.isEmpty(data.description, {
-      min: 4,
-      max: 40
-    })
-  ) {
-    errors.description = "description need to between 4 and 40 characters";
-  }
-  if (Validator.isEmpty(data.total)) {
-    errors.total = "total field is required";
-  }
-  if (Validator.isEmpty(data.price)) {
-    errors.price = "price field is required";
+  if (Validator.isEmpty(data.name)) {
+    errors.name = "Budget name is required";
   }
 
   return {

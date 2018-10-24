@@ -6,22 +6,31 @@ const BudgetSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
-  total: {
-    type: Number,
-    required: true
-  },
-  description: {
+  name: {
     type: String,
-    required: true
+    required: true,
+    max: 20
   },
-  title: {
-    type: String,
-    required: true
-  },
-  price: {
-    type: Number,
-    required: true
-  },
+  budget: [
+    {
+      total: {
+        type: Number,
+        required: true
+      },
+      description: {
+        type: String,
+        required: true
+      },
+      title: {
+        type: String,
+        required: true
+      },
+      price: {
+        type: Number,
+        required: true
+      }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now

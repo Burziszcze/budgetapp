@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import { getCurrentBudget, deleteAccount } from "../../actions/budgetActions";
-import ProfileActions from "./ProfileActions";
+// import ProfileActions from "./ProfileActions";
 import Profile from "../profile/Profile";
 
 class Dashboard extends Component {
@@ -31,7 +31,7 @@ class Dashboard extends Component {
             <div className="row">
               <div className="col-md-12">
                 <Profile />
-                <ProfileActions />
+                {/* <ProfileActions /> */}
                 <div className="text-center">
                   <div className="card-body">
                     <h5 className="card-title">Delete Your Account</h5>

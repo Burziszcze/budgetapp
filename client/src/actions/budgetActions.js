@@ -28,6 +28,25 @@ export const getCurrentBudget = () => dispatch => {
     );
 };
 
+// Get budget by handle
+export const getBudgetByHandle = handle => dispatch => {
+  dispatch(setBudgetLoading());
+  axios
+    .get(`/api/budget/handle/${handle}`)
+    .then(res =>
+      dispatch({
+        type: GET_BUDGET,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_BUDGET,
+        payload: null
+      })
+    );
+};
+
 // Create Budget
 export const createBudget = (budgetData, history) => dispatch => {
   axios

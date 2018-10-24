@@ -11,7 +11,6 @@ const logger = require("morgan");
 // routes
 const users = require("./routes/api/users");
 const budget = require("./routes/api/budget");
-const profile = require("./routes/api/profile");
 const app = express();
 
 // Body parser middleware
@@ -56,7 +55,6 @@ require("./config/passport")(passport);
 // Use Routes
 app.use("/api/users", users);
 app.use("/api/budget", budget);
-app.use("/api/profile", profile);
 
 // set Port
 const port = process.env.PORT || 5000;
