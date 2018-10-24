@@ -30,6 +30,7 @@ module.exports = {
   mongoURI: 'YOUR_OWN_MONGO_URI',
   secretOrKey: 'YOUR_OWN_SECRET'
 };
+```
 
 ## App Info
 
@@ -44,4 +45,3 @@ Paul Vegan
 ### License
 
 This project is licensed under the MIT License
-```
