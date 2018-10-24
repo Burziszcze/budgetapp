@@ -18,7 +18,6 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateProfile from "./components/dashboard/CreateProfile";
 import CreateBudget from "./components/dashboard/CreateBudget";
-import EditProfile from "./components/edit-profile/EditProfile";
 import EditBudget from "./components/dashboard/EditBudget";
 import Profile from "./components/profile/Profile";
 import NotFound from "./components/not-found/NotFound";
@@ -66,13 +65,6 @@ class App extends Component {
                   exact
                   path="/create-profile"
                   component={CreateProfile}
-                />
-              </Switch>
-              <Switch>
-                <PrivateRoute
-                  exact
-                  path="/edit-profile"
-                  component={EditProfile}
                 />
               </Switch>
               <Switch>

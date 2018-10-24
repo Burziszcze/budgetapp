@@ -47,6 +47,78 @@ router.get(
   }
 );
 
+// @route   GET api/budget/user/:user_id
+// @desc    Get budget by user ID
+// @access  Public
+router.get("/user/:user_id", (req, res) => {
+  const errors = {};
+
+  Budget.findOne({
+    user: req.params.user_id
+  })
+    .populate("user", ["name", "avatar"])
+    .then(budget => {
+      if (!budget) {
+        errors.nobudget = "There is no budget for this user";
+        res.status(404).json(errors);
+      } else {
+        res.json(budget);
+      }
+    })
+    .catch(err =>
+      res.status(404).json({
+        budget: "There is no budget Schema for this user"
+      })
+    );
+});
+
+// @route   POST api/budget
+// @desc    Create or Edit user budget
+// @access  Private
+router.post(
+  "/",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    const { errors, isValid } = validateBudgetSchema(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+    // Get fields
+    const budgetFields = {};
+    budgetFields.user = req.user.id;
+    if (req.body.total) budgetFields.total = req.body.total;
+    if (req.body.title) budgetFields.title = req.body.title;
+    if (req.body.description) budgetFields.description = req.body.description;
+    if (req.body.price) budgetFields.price = req.body.price;
+
+    Budget.findOne({
+      user: req.user.id
+    }).then(budget => {
+      if (budget) {
+        // Update
+        Budget.findOneAndUpdate(
+          {
+            user: req.user.id
+          },
+          {
+            $set: budgetFields
+          },
+          {
+            new: true
+          }
+        ).then(budget => res.json(budget));
+        // Save Budget
+        new Budget(budgetFields).save().then(budget => res.json(budget));
+      }
+    });
+  }
+);
+
 // @route   DELETE api/budget
 // @desc    Delete user and budget
 // @access  Private

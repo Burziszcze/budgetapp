@@ -10,10 +10,10 @@ import {
 } from "./types";
 
 // Get current profile
-export const getCurrentProfile = () => dispatch => {
-  dispatch(setProfileLoading());
+export const getCurrentBudget = () => dispatch => {
+  dispatch(setBudgetLoading());
   axios
-    .get("/api/profile")
+    .get("/api/budget")
     .then(res =>
       dispatch({
         type: GET_BUDGET,
@@ -28,29 +28,10 @@ export const getCurrentProfile = () => dispatch => {
     );
 };
 
-// Get profile by handle
-export const getProfileByHandle = handle => dispatch => {
-  dispatch(setProfileLoading());
+// Create Budget
+export const createBudget = (budgetData, history) => dispatch => {
   axios
-    .get(`/api/profile/handle/${handle}`)
-    .then(res =>
-      dispatch({
-        type: GET_BUDGET,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_BUDGET,
-        payload: null
-      })
-    );
-};
-
-// Create Profile
-export const createProfile = (profileData, history) => dispatch => {
-  axios
-    .post("/api/profile", profileData)
+    .post("/api/budget", budgetData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -60,10 +41,10 @@ export const createProfile = (profileData, history) => dispatch => {
     );
 };
 
-// Add experience
-export const addExperience = (expData, history) => dispatch => {
+// Add budget
+export const addBudget = (budgetData, history) => dispatch => {
   axios
-    .post("/api/profile/experience", expData)
+    .post("/api/budget/budget", budgetData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -71,55 +52,10 @@ export const addExperience = (expData, history) => dispatch => {
         payload: err.response.data
       })
     );
-};
-
-// Add education
-export const addEducation = (eduData, history) => dispatch => {
-  axios
-    .post("/api/profile/education", eduData)
-    .then(res => history.push("/dashboard"))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-};
-
-// Delete Experience
-export const deleteExperience = id => dispatch => {
-  swal({
-    title: "Are you sure?",
-    text: "Your experience will be deleted!",
-    icon: "info",
-    buttons: ["No", "Yes"],
-    dangerMode: true
-  }).then(willDelete => {
-    if (willDelete) {
-      swal("Your experience has been deleted!", {
-        icon: "success"
-      });
-      // Delete exp
-      axios
-        .delete(`/api/profile/experience/${id}`)
-        .then(res =>
-          dispatch({
-            type: GET_BUDGET,
-            payload: res.data
-          })
-        )
-        .catch(err =>
-          dispatch({
-            type: GET_ERRORS,
-            payload: err.response.data
-          })
-        );
-    }
-  });
 };
 
 // Delete Education
-export const deleteEducation = id => dispatch => {
+export const deleteBudget = id => dispatch => {
   swal({
     title: "Are you sure?",
     text: "Your education will be deleted!",
@@ -186,14 +122,14 @@ export const deleteAccount = () => dispatch => {
 };
 
 // Profile loading
-export const setProfileLoading = () => {
+export const setBudgetLoading = () => {
   return {
     type: BUDGET_LOADING
   };
 };
 
 // Clear profile
-export const clearCurrentProfile = () => {
+export const clearCurrentBudget = () => {
   return {
     type: CLEAR_CURRENT_BUDGET
   };
