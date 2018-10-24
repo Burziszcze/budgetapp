@@ -4,7 +4,7 @@ const isEmpty = require("./is-empty");
 module.exports = function validateBudgetSchema(data) {
   let errors = {};
 
-  data.total = !isEmpty(data.total) ? data.total : "";
+  data.total = !isEmpty(data.total) ? data.total : 0;
   data.title = !isEmpty(data.title) ? data.title : "";
   data.description = !isEmpty(data.description) ? data.description : "";
   data.price = !isEmpty(data.price) ? data.price : "";

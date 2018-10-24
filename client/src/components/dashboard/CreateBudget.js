@@ -12,6 +12,7 @@ class CreateBudget extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      total: 0,
       errors: {}
     };
 
@@ -28,11 +29,11 @@ class CreateBudget extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const profileData = {
-      handle: this.state.handle
+    const itemData = {
+      total: this.state.total
     };
 
-    this.props.createBudget(profileData, this.props.history);
+    this.props.createBudget(itemData, this.props.history);
   }
 
   onChange(e) {
@@ -42,44 +43,29 @@ class CreateBudget extends Component {
   render() {
     const { errors } = this.state;
 
-    // Select options for status
-    const options = [
-      { label: "* Select Professional Status", value: 0 },
-      { label: "Developer", value: "Developer" },
-      { label: "Junior Developer", value: "Junior Developer" },
-      { label: "Senior Developer", value: "Senior Developer" },
-      { label: "Manager", value: "Manager" },
-      { label: "Student or Learning", value: "Student or Learning" },
-      { label: "Instructor or Teacher", value: "Instructor or Teacher" },
-      { label: "Intern", value: "Intern" },
-      { label: "Other", value: "Other" }
-    ];
-
     return (
-      <div className="create-profile">
+      <div className="create-budget form-wrapper">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Create Your Profile</h1>
-              <p className="lead text-center">
-                Let's get some information to make your profile stand out
-              </p>
+              <h2 className="lead text-white text-center">add your budget</h2>
               <small className="d-block pb-3 text-center">
                 * = required fields
               </small>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="* Profile Handle"
-                  name="handle"
-                  value={this.state.handle}
+                  placeholder="are you millionaire?"
+                  name="total"
+                  type="Number"
+                  value={this.state.total}
                   onChange={this.onChange}
-                  error={errors.handle}
-                  info="A unique handle for your profile URL. Your full name, company name, nickname"
+                  error={errors.total}
+                  info="you can leave this field with sum of zero"
                 />
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-info btn-block mt-4"
+                  className="btn btn-outline-light btn-block mt-4"
                 />
               </form>
             </div>
@@ -91,12 +77,12 @@ class CreateBudget extends Component {
 }
 
 CreateBudget.propTypes = {
-  profile: PropTypes.object.isRequired,
+  budget: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  budget: state.budget,
   errors: state.errors
 });
 

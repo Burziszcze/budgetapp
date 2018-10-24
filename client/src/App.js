@@ -24,6 +24,7 @@ import NotFound from "./components/not-found/NotFound";
 
 // import styles
 import "./styles/App.css";
+import { clearCurrentBudget } from "./actions/budgetActions";
 
 // check for Token
 if (localStorage.jwtToken) {
@@ -39,7 +40,7 @@ if (localStorage.jwtToken) {
     // Logout user
     store.dispatch(logoutUser());
     // Clear current Profile
-    store.dispatch(clearCurrentProfile());
+    store.dispatch(clearCurrentBudget());
     // Redirect to login
     window.location.href = "/login";
   }
@@ -56,28 +57,28 @@ class App extends Component {
             <main role="main" className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/Login" component={Login} />
-              <Route exact path="/profile/:handle" component={Profile} />
+              {/* <Route exact path="/profile/:handle" component={Profile} /> */}
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
-              <Switch>
+              {/* <Switch>
                 <PrivateRoute
                   exact
                   path="/create-profile"
                   component={CreateProfile}
                 />
-              </Switch>
+              </Switch> */}
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/create-profile"
+                  path="/create-budget"
                   component={CreateBudget}
                 />
               </Switch>
               <Switch>
                 <PrivateRoute
                   exact
-                  path="/edit-profile"
+                  path="/edit-budget"
                   component={EditBudget}
                 />
               </Switch>

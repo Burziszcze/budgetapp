@@ -5,7 +5,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  profile: null,
+  budget: null,
   loading: false
 };
 
@@ -19,13 +19,13 @@ export default function(state = initialState, action) {
     case GET_BUDGET:
       return {
         ...state,
-        profile: action.payload,
+        budget: action.payload,
         loading: false
       };
     case CLEAR_CURRENT_BUDGET:
       return {
         ...state,
-        profile: null
+        budget: null
       };
     default:
       return state;

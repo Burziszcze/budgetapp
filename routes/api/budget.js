@@ -89,12 +89,12 @@ router.post(
       return res.status(400).json(errors);
     }
     // Get fields
-    const budgetFields = {};
+    const budgetFields = 0;
     budgetFields.user = req.user.id;
     if (req.body.total) budgetFields.total = req.body.total;
-    if (req.body.title) budgetFields.title = req.body.title;
-    if (req.body.description) budgetFields.description = req.body.description;
-    if (req.body.price) budgetFields.price = req.body.price;
+    // if (req.body.title) budgetFields.title = req.body.title;
+    // if (req.body.description) budgetFields.description = req.body.description;
+    // if (req.body.price) budgetFields.price = req.body.price;
 
     Budget.findOne({
       user: req.user.id

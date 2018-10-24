@@ -1,44 +1,49 @@
 // dependencies
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const passport = require('passport');
-const jwt = require('jsonwebtoken');
-const path = require('path');
-const cors = require('cors');
-const logger = require('morgan');
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+const jwt = require("jsonwebtoken");
+const path = require("path");
+const cors = require("cors");
+const logger = require("morgan");
 
 // routes
-const users = require('./routes/api/users');
-const budget = require('./routes/api/budget');
-const profile = require('./routes/api/profile');
+const users = require("./routes/api/users");
+const budget = require("./routes/api/budget");
+const profile = require("./routes/api/profile");
 const app = express();
 
 // Body parser middleware
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: true
+  })
+);
 app.use(bodyParser.json());
 app.use(cors());
-app.use(logger('dev'));
+app.use(logger("dev"));
 
 // MongoDB Config
-const db = require('./config/keys').mongoURI;
+const db = require("./config/keys").mongoURI;
 
 // connect to MongoDB
 mongoose
-  .connect(db, {
-    useNewUrlParser: true
-  })
-  .then(() => console.log('connected to the MongoDB database!'))
+  .connect(
+    db,
+    {
+      useNewUrlParser: true
+    }
+  )
+  .then(() => console.log("connected to the MongoDB database!"))
   .catch(err => console.log(err));
 
 // Server static assets if in production
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static('client/build'));
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
@@ -46,12 +51,12 @@ if (process.env.NODE_ENV === 'production') {
 app.use(passport.initialize());
 
 // Passport Config
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 // Use Routes
-app.use('/api/users', users);
-app.use('/api/budget', budget);
-app.use('/api/profile', profile);
+app.use("/api/users", users);
+app.use("/api/budget", budget);
+app.use("/api/profile", profile);
 
 // set Port
 const port = process.env.PORT || 5000;

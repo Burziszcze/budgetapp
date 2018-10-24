@@ -10,9 +10,6 @@ import Profile from "../profile/Profile";
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentBudget();
-    // if (this.props.match.params.handle) {
-    //   this.props.getProfileByHandle(this.props.match.params.handle);
-    // }
   }
 
   onDeleteClick(e) {
@@ -21,14 +18,14 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.props.auth;
-    const { profile, loading } = this.props.profile;
+    const { budget, loading } = this.props.budget;
     let dashboardContent;
 
-    if (profile === null || loading) {
+    if (budget === null || loading) {
       dashboardContent = <div className="loader">loading...</div>;
     } else {
-      // Check if logged in user has profile data
-      if (Object.keys(profile).length > 0) {
+      // Check if logged in user has budget data
+      if (Object.keys(budget).length > 0) {
         dashboardContent = (
           <div className="dashboardContent">
             <div className="row">
@@ -55,13 +52,13 @@ class Dashboard extends Component {
           </div>
         );
       } else {
-        // User is logged in but has no profile
+        // User is logged in but has no budget
         dashboardContent = (
           <div>
             <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="btn btn-lg btn-info">
-              Create profile
+            <p>You have not yet setup a budget, please add some info</p>
+            <Link to="/create-budget" className="btn btn-lg btn-light">
+              new budget
             </Link>
           </div>
         );
@@ -84,11 +81,11 @@ Dashboard.propTypes = {
   getCurrentBudget: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  budget: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  budget: state.budget,
   auth: state.auth
 });
 
