@@ -325,10 +325,10 @@ router.delete(
         session: false
     }),
     (req, res) => {
-        Profile.findOneAndRemove({
+        Profile.findOneAndDelete({
             user: req.user.id
         }).then(() => {
-            User.findOneAndRemove({
+            User.findOneAndDelete({
                 _id: req.user.id
             }).then(() =>
                 res.json({

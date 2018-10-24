@@ -12,3 +12,8 @@ export const GET_POST = 'GET_POST';
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 
+// budget types
+export const GET_BUDGET = 'GET_BUDGET';
+export const BUDGET_LOADING = 'BUDGET_LOADING';
+export const CLEAR_CURRENT_BUDGET = 'CLEAR_CURRENT_BUDGET';
+

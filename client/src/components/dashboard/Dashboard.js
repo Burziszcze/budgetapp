@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
-import ProfileActions from './ProfileActions';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
+import ProfileActions from "./ProfileActions";
+import Profile from "../profile/Profile";
 
 class Dashboard extends Component {
-
   componentDidMount() {
     this.props.getCurrentProfile();
+    if (this.props.match.params.handle) {
+      this.props.getProfileByHandle(this.props.match.params.handle);
+    }
   }
 
   onDeleteClick(e) {
@@ -21,25 +24,35 @@ class Dashboard extends Component {
     let dashboardContent;
 
     if (profile === null || loading) {
-      dashboardContent = <div>loading...</div>;
+      dashboardContent = <div className="loader">loading...</div>;
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div className="dashboardContent">
-            <h3 className="lead text-muted">Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
-            </h3>
-            <ProfileActions />
-            <div style={{ marginBottom: '60px' }}></div>
-            <div className="card text-center">
-              <div className="card-body">
-                <h5 className="card-title">Delete Your Account</h5>
-                <p className="card-text">This operation can NOT be undone, your account will be permanently deleted!</p>
-                <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">Delete My Account</button>
+            <div className="row">
+              <div className="col-md-12">
+                <Profile />
+                <ProfileActions />
+                <div className="text-center">
+                  <div className="card-body">
+                    <h5 className="card-title">Delete Your Account</h5>
+                    <p className="card-text">
+                      This operation can NOT be undone, your account will be
+                      permanently deleted!
+                    </p>
+                    <button
+                      onClick={this.onDeleteClick.bind(this)}
+                      className="btn btn-danger"
+                    >
+                      Delete My Account
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        )
+        );
       } else {
         // User is logged in but has no profile
         dashboardContent = (
@@ -50,7 +63,7 @@ class Dashboard extends Component {
               Create profile
             </Link>
           </div>
-        )
+        );
       }
     }
 
@@ -58,13 +71,11 @@ class Dashboard extends Component {
       <div className="dashboard form-wrapper text-center">
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
-              {dashboardContent}
-            </div>
+            <div className="col-md-12">{dashboardContent}</div>
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -73,11 +84,14 @@ Dashboard.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired
-}
+};
 
 const mapStateToProps = state => ({
   profile: state.profile,
   auth: state.auth
-})
+});
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(Dashboard);
+export default connect(
+  mapStateToProps,
+  { getCurrentProfile, deleteAccount }
+)(Dashboard);
