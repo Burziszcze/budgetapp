@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { logoutUser } from '../../actions/authActions';
-import { clearCurrentProfile } from '../../actions/profileActions';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
+// import { clearCurrentProfile } from '../../actions/profileActions';
+import { clearCurrentBudget } from "../../actions/budgetActions";
 
 class Header extends Component {
-
   onLogoutClick = event => {
     event.preventDefault();
-    this.props.clearCurrentProfile();
+    this.props.clearCurrentBudget();
     this.props.logoutUser();
-  }
+  };
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
@@ -21,22 +21,25 @@ class Header extends Component {
         <li className="nav-item">
           <Link className="nav-link" to="/dashboard">
             Dashboard
-        </Link>
+          </Link>
         </li>
         <li className="nav-item">
-          <a href="" className="nav-link text-light">Welcome {user.name}</a>
+          <a href="" className="nav-link text-light">
+            Welcome {user.name}
+          </a>
         </li>
         <li className="nav-item">
           <a
             href=""
             className="nav-link"
-            onClick={this.onLogoutClick.bind(this)}>
+            onClick={this.onLogoutClick.bind(this)}
+          >
             <img
               className="rounded-circle"
               src={user.avatar}
               alt={user.name}
               title="You must have a Gravatar connected to your email to display an image"
-              style={{ width: '25px', marginRight: '5px' }}
+              style={{ width: "25px", marginRight: "5px" }}
             />
             Logout
           </a>
@@ -48,12 +51,12 @@ class Header extends Component {
         <li className="nav-item">
           <Link className="nav-link" to="/register">
             Sign Up
-        </Link>
+          </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" to="/login">
             Login
-        </Link>
+          </Link>
         </li>
       </ul>
     );
@@ -67,31 +70,33 @@ class Header extends Component {
               data-toggle="collapse"
               data-target="#mobile-nav"
             >
-              <span className="navbar-toggler-icon" >
-              </span>
+              <span className="navbar-toggler-icon" />
             </button>
             <Link className="navbar-brand" to="/">
-              <i className="fas fa-money-check-alt logo"></i>
-              BudgetApp</Link>
+              <i className="fas fa-money-check-alt logo" />
+              BudgetApp
+            </Link>
             <div className="collapse navbar-collapse" id="mobile-nav">
-              <ul className="navbar-nav mr-auto nav-pills">
-              </ul>
+              <ul className="navbar-nav mr-auto nav-pills" />
               {isAuthenticated ? authLinks : guestLinks}
             </div>
           </div>
         </nav>
       </header>
-    )
+    );
   }
 }
 
 Header.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(Header);
+export default connect(
+  mapStateToProps,
+  { logoutUser, clearCurrentBudget }
+)(Header);

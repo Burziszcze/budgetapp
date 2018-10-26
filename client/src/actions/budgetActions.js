@@ -29,10 +29,10 @@ export const getCurrentBudget = () => dispatch => {
 };
 
 // Get budget by handle
-export const getBudgetByHandle = handle => dispatch => {
+export const getBudgetByHandle = budget => dispatch => {
   dispatch(setBudgetLoading());
   axios
-    .get(`/api/budget/handle/${handle}`)
+    .get(`/api/budget/budget/${budget}`)
     .then(res =>
       dispatch({
         type: GET_BUDGET,
@@ -110,18 +110,18 @@ export const deleteAccount = () => dispatch => {
   swal({
     title: "Are you sure?",
     text:
-      "Once deleted, you will not be able to recover this account and profile",
+      "Once deleted, you will not be able to recover this account and budget",
     icon: "warning",
     buttons: ["Cancel", "yes im sure"],
     dangerMode: true
   }).then(willDelete => {
     if (willDelete) {
-      swal("Your account and profile file has been deleted!", {
+      swal("Your account and budget has been deleted!", {
         icon: "success"
       });
-      // Delete Profile
+      // Delete Budget
       axios
-        .delete("/api/profile")
+        .delete("/api/budget")
         .then(res =>
           dispatch({
             type: SET_CURRENT_USER,
@@ -135,7 +135,7 @@ export const deleteAccount = () => dispatch => {
           })
         );
     } else {
-      swal("Your account is safe!");
+      swal("Your budget is safe!");
     }
   });
 };

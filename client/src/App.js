@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthtoken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
-import { clearCurrentProfile } from "./actions/profileActions";
 
 // redux
 import { Provider } from "react-redux";
@@ -16,10 +15,8 @@ import Header from "./components/layout/Header";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
-import CreateProfile from "./components/dashboard/CreateProfile";
 import CreateBudget from "./components/dashboard/CreateBudget";
 import EditBudget from "./components/dashboard/EditBudget";
-import Profile from "./components/profile/Profile";
 import NotFound from "./components/not-found/NotFound";
 
 // import styles
@@ -57,7 +54,6 @@ class App extends Component {
             <main role="main" className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/Login" component={Login} />
-              {/* <Route exact path="/profile/:handle" component={Profile} /> */}
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>

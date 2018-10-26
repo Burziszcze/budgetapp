@@ -48,13 +48,11 @@ class CreateBudget extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h2 className="lead text-white text-center">add your budget</h2>
-              <small className="d-block pb-3 text-center">
-                * = required fields
-              </small>
+              <h1 className=" lead text-center">add your budget</h1>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
-                  placeholder="are you millionaire?"
+                  type="text"
+                  placeholder="type your budget name"
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
@@ -64,7 +62,7 @@ class CreateBudget extends Component {
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-outline-light btn-block mt-4"
+                  className="btn btn-light btn-block mt-4"
                 />
               </form>
             </div>

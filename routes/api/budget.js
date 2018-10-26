@@ -91,7 +91,7 @@ router.post(
     // Get fields
     const budgetFields = {};
     budgetFields.user = req.user.id;
-    // if (req.body.name) budgetFields.name = req.body.name;
+    if (req.body.name) budgetFields.name = req.body.name;
     // if (req.body.total) budgetFields.total = req.body.total;
     // if (req.body.title) budgetFields.title = req.body.title;
     // if (req.body.description) budgetFields.description = req.body.description;
@@ -113,8 +113,19 @@ router.post(
             new: true
           }
         ).then(budget => res.json(budget));
-        // Save Budget
-        new Budget(budgetFields).save().then(budget => res.json(budget));
+      } else {
+        // Create
+        // Check if budget exists
+        Budget.findOne({
+          name: budgetFields.name
+        }).then(budget => {
+          if (budget) {
+            errors.name = "That budget name already exists";
+            res.status(400).json(errors);
+          }
+          // Save Budget
+          new Budget(budgetFields).save().then(budget => res.json(budget));
+        });
       }
     });
   }
@@ -129,10 +140,10 @@ router.delete(
     session: false
   }),
   (req, res) => {
-    Budget.findByIdAndDelete({
+    Budget.findOneAndRemove({
       user: req.user.id
     }).then(() => {
-      User.findByIdAndDelete({
+      User.findOneAndRemove({
         _id: req.user.id
       }).then(() =>
         res.json({

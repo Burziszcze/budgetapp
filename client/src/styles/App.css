@@ -55,6 +55,7 @@ body {
   padding: 10px;
 }
 
+input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="name"],
@@ -63,6 +64,7 @@ textarea {
   border: 1px solid #fff !important;
 }
 
+input[type="text"],
 input[type="password"],
 input[type="email"],
 input[type="name"],
@@ -105,7 +107,7 @@ textarea::-webkit-input-placeholder {
   left: -200px;
   width: 200px;
   height: 4px;
-  background-color: #17a2b8;
+  background-color: #dc3545;
   animation: loading 2s linear infinite;
 }
 

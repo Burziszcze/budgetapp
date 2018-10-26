@@ -5,10 +5,13 @@ import { connect } from "react-redux";
 // import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import { getCurrentBudget, deleteAccount } from "../../actions/budgetActions";
 // import ProfileActions from "./ProfileActions";
-import Profile from "../profile/Profile";
+import Budget from "../budget/Budget";
 
 class Dashboard extends Component {
   componentDidMount() {
+    if (this.props.match.params.handle) {
+      this.props.getBudgetByHandle(this.props.match.params.handle);
+    }
     this.props.getCurrentBudget();
   }
 
@@ -18,6 +21,7 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.props.auth;
+
     const { budget, loading } = this.props.budget;
     let dashboardContent;
 
@@ -30,7 +34,7 @@ class Dashboard extends Component {
           <div className="dashboardContent">
             <div className="row">
               <div className="col-md-12">
-                <Profile />
+                <Budget />
                 {/* <ProfileActions /> */}
                 <div className="text-center">
                   <div className="card-body">
@@ -41,7 +45,7 @@ class Dashboard extends Component {
                     </p>
                     <button
                       onClick={this.onDeleteClick.bind(this)}
-                      className="btn btn-danger"
+                      className="btn btn-outline-danger"
                     >
                       Delete My Account
                     </button>
