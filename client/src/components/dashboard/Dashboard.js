@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
-import { getCurrentBudget, deleteAccount } from "../../actions/budgetActions";
+import {
+  getCurrentBudget,
+  deleteAccount,
+  deleteBudget
+} from "../../actions/budgetActions";
 // import ProfileActions from "./ProfileActions";
 import Budget from "../budget/Budget";
 
@@ -18,7 +22,9 @@ class Dashboard extends Component {
   onDeleteClick(e) {
     this.props.deleteAccount();
   }
-
+  onDeleteBudget(e) {
+    this.props.deleteBudget();
+  }
   render() {
     const { user } = this.props.auth;
 
@@ -36,6 +42,12 @@ class Dashboard extends Component {
               <div className="col-md-12">
                 <Budget />
                 {/* <ProfileActions /> */}
+                <button
+                  onClick={this.onDeleteBudget.bind(this)}
+                  className="btn btn-outline-warning"
+                >
+                  Delete My budget
+                </button>
                 <div className="text-center">
                   <div className="card-body">
                     <h5 className="card-title">Delete Your Account</h5>
@@ -84,6 +96,7 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   getCurrentBudget: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
+  deleteBudget: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   budget: PropTypes.object.isRequired
 };
@@ -95,5 +108,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getCurrentBudget, deleteAccount }
+  { getCurrentBudget, deleteAccount, deleteBudget }
 )(Dashboard);

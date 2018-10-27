@@ -132,6 +132,25 @@ router.post(
 );
 
 // @route   DELETE api/budget
+// @desc    Delete budget profile
+// @access  Private
+router.delete(
+  "/",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    Budget.findOneAndDelete({
+      user: req.user.id
+    }).then(() =>
+      res.json({
+        success: true
+      })
+    );
+  }
+);
+
+// @route   DELETE api/budget
 // @desc    Delete user and budget
 // @access  Private
 router.delete(
@@ -153,4 +172,5 @@ router.delete(
     });
   }
 );
+
 module.exports = router;

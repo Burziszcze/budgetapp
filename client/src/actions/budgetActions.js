@@ -74,7 +74,7 @@ export const addBudget = (budgetData, history) => dispatch => {
 };
 
 // Delete Education
-export const deleteBudget = id => dispatch => {
+export const deleteEducation = id => dispatch => {
   swal({
     title: "Are you sure?",
     text: "Your education will be deleted!",
@@ -105,7 +105,42 @@ export const deleteBudget = id => dispatch => {
   });
 };
 
-// Delete account & profile
+// Delete budget profile
+export const deleteBudget = () => dispatch => {
+  swal({
+    title: "Are you sure?",
+    text:
+      "Once deleted, you will not be able to recover this account and budget",
+    icon: "warning",
+    buttons: ["Cancel", "yes im sure"],
+    dangerMode: true
+  }).then(willDelete => {
+    if (willDelete) {
+      swal("Your account and budget has been deleted!", {
+        icon: "success"
+      });
+      // Delete Budget
+      axios
+        .delete("/api/budget")
+        .then(res =>
+          dispatch({
+            type: GET_BUDGET,
+            payload: {}
+          })
+        )
+        .catch(err =>
+          dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+          })
+        );
+    } else {
+      swal("Your budget is safe!");
+    }
+  });
+};
+
+// Delete account & budget profile
 export const deleteAccount = () => dispatch => {
   swal({
     title: "Are you sure?",

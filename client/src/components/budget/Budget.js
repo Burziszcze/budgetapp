@@ -6,12 +6,6 @@ import { Link } from "react-router-dom";
 import { getBudgetByHandle } from "../../actions/budgetActions";
 
 class Budget extends Component {
-  // componentDidMount() {
-  //   if (this.props.match.params.handle) {
-  //     this.props.getBudgetByHandle(this.props.match.params.handle);
-  //   }
-  // }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.budget.budget === null && this.props.budget.loading) {
       this.props.history.push("/not-found");
