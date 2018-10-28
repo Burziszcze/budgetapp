@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Load Validation
 const validateBudgetSchema = require("../../validation/budget");
-
+const validateDataInput = require("../../validation/validateData");
 // Load B Mudgetodel
 const Budget = require("../../models/Budget");
 // Load User Model
@@ -131,6 +131,66 @@ router.post(
   }
 );
 
+// @route   POST api/budget/data
+// @desc    Add data to budget
+// @access  Private
+router.post(
+  "/data",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    const { errors, isValid } = validateDataInput(req.body);
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    Budget.findOne({
+      user: req.user.id
+    }).then(budget => {
+      const newData = {
+        // total: req.body.total,
+        user: req.user.id,
+        description: req.body.description,
+        value: req.body.value
+      };
+      // Add to newData array
+      budget.data.unshift(newData);
+      budget.save().then(budget => res.json(budget));
+    });
+  }
+);
+
+// @route   DELETE api/budget/data/:data_id
+// @desc    Delete data from budget
+// @access  Private
+router.delete(
+  "/data/:data_id",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    Budget.findOne({
+      user: req.user.id
+    })
+      .then(budget => {
+        // Get remove index
+        const removeIndex = budget.data
+          .map(item => item.id)
+          .indexOf(req.params.data_id);
+
+        // Splice out of array
+        budget.data.splice(removeIndex, 1);
+
+        // Save
+        budget.save().then(budget => res.json(budget));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
 // @route   DELETE api/budget
 // @desc    Delete budget profile
 // @access  Private
@@ -151,7 +211,7 @@ router.delete(
 );
 
 // @route   DELETE api/budget
-// @desc    Delete user and budget
+// @desc    Delete user and budget profile
 // @access  Private
 router.delete(
   "/",

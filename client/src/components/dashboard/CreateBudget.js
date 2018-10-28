@@ -57,12 +57,11 @@ class CreateBudget extends Component {
                   value={this.state.name}
                   onChange={this.onChange}
                   error={errors.name}
-                  info="you can leave this field with sum of zero"
                 />
                 <input
                   type="submit"
                   value="Submit"
-                  className="btn btn-light btn-block mt-4"
+                  className="btn btn-outline-light btn-block mt-4"
                 />
               </form>
             </div>

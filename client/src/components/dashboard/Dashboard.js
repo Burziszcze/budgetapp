@@ -71,9 +71,12 @@ class Dashboard extends Component {
         // User is logged in but has no budget
         dashboardContent = (
           <div>
-            <p className="lead text-muted">Welcome {user.name}</p>
-            <p>You have not yet setup a budget, please add some info</p>
-            <Link to="/create-budget" className="btn btn-lg btn-light">
+            <p className="lead">Welcome {user.name}</p>
+            <p>
+              You have not yet setup your budget profile, please add one and
+              start manage your expenses
+            </p>
+            <Link to="/create-budget" className="btn btn-lg btn-outline-light">
               new budget
             </Link>
           </div>

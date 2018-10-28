@@ -61,9 +61,9 @@ export const createBudget = (budgetData, history) => dispatch => {
 };
 
 // Add budget
-export const addBudget = (budgetData, history) => dispatch => {
+export const addBudgetItem = (budgetData, history) => dispatch => {
   axios
-    .post("/api/budget/budget", budgetData)
+    .post("/api/budget/data", budgetData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
@@ -73,22 +73,22 @@ export const addBudget = (budgetData, history) => dispatch => {
     );
 };
 
-// Delete Education
-export const deleteEducation = id => dispatch => {
+// Delete delete budget item
+export const deleteBudgetItem = id => dispatch => {
   swal({
     title: "Are you sure?",
-    text: "Your education will be deleted!",
+    text: "This Item will be deleted!",
     icon: "info",
     buttons: ["No", "Yes"],
     dangerMode: true
   }).then(willDelete => {
     if (willDelete) {
-      swal("Your education has been deleted!", {
+      swal("deleted!", {
         icon: "success"
       });
       // Delete edu
       axios
-        .delete(`/api/profile/education/${id}`)
+        .delete(`/api/data/budget/${id}`)
         .then(res =>
           dispatch({
             type: GET_BUDGET,

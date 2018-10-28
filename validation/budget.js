@@ -5,8 +5,6 @@ module.exports = function validateBudgetSchema(data) {
   let errors = {};
 
   data.name = !isEmpty(data.name) ? data.name : "";
-  // data.status = !isEmpty(data.status) ? data.status : '';
-  // data.skills = !isEmpty(data.skills) ? data.skills : '';
 
   if (
     !Validator.isLength(data.name, {
