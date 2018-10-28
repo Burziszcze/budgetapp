@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import {
   getCurrentBudget,
   deleteAccount,
   deleteBudget
 } from "../../actions/budgetActions";
-// import ProfileActions from "./ProfileActions";
 import Budget from "../budget/Budget";
 
 class Dashboard extends Component {
@@ -41,7 +39,6 @@ class Dashboard extends Component {
             <div className="row">
               <div className="col-md-12">
                 <Budget />
-                {/* <ProfileActions /> */}
                 <button
                   onClick={this.onDeleteBudget.bind(this)}
                   className="btn btn-outline-warning"

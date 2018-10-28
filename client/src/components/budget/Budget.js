@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-
+import AddNewItem from "../dashboard/AddNewItem";
+import BudgetItem from "./BudgetItem";
 import { getBudgetByHandle } from "../../actions/budgetActions";
 
 class Budget extends Component {
@@ -14,6 +15,7 @@ class Budget extends Component {
 
   render() {
     const { budget, loading } = this.props.budget;
+
     let budgetContent;
 
     if (budget === null || loading) {
@@ -29,6 +31,9 @@ class Budget extends Component {
             />
             <h3 className="budget-name">your budget name: {budget.name}</h3>
             <h1 className="text-center">{budget.user.name}</h1>
+            <AddNewItem />
+            <br />
+            <BudgetItem BudgetItem={budget.data} />
           </div>
         </div>
       );

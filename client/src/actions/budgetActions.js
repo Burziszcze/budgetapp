@@ -88,7 +88,7 @@ export const deleteBudgetItem = id => dispatch => {
       });
       // Delete edu
       axios
-        .delete(`/api/data/budget/${id}`)
+        .delete(`/api/budget/data/${id}`)
         .then(res =>
           dispatch({
             type: GET_BUDGET,

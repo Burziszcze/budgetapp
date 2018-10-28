@@ -17,6 +17,7 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateBudget from "./components/dashboard/CreateBudget";
 import EditBudget from "./components/dashboard/EditBudget";
+import AddToBudget from "./components/budget/AddToBudget";
 import NotFound from "./components/not-found/NotFound";
 
 // import styles
@@ -76,6 +77,13 @@ class App extends Component {
                   exact
                   path="/edit-budget"
                   component={EditBudget}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-to-budget"
+                  component={AddToBudget}
                 />
               </Switch>
               <Route exact path="/not-found" component={NotFound} />
