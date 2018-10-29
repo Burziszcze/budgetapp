@@ -45,7 +45,7 @@ class Dashboard extends Component {
                 >
                   Delete My budget
                 </button>
-                <div className="text-center">
+                <div className="text-center form-wrapper">
                   <div className="card-body">
                     <h5 className="card-title">Delete Your Account</h5>
                     <p className="card-text">

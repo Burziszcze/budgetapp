@@ -23,15 +23,29 @@ class Budget extends Component {
     } else {
       budgetContent = (
         <div>
-          <div className="budget">
-            <img
-              className="rounded-circle"
-              src={budget.user.avatar}
-              alt={budget.user.name}
-            />
-            <h3 className="budget-name">your budget name: {budget.name}</h3>
-            <h1 className="text-center">{budget.user.name}</h1>
-            <AddNewItem />
+          <div className="budget clear-padd">
+            <div className="row">
+              <div className="col-xs-12 col-sm-8 col-lg-6 form-wrapper">
+                <h1 className="display-4 dashboard-heading">Dashboard</h1>
+                <img
+                  className="rounded-circle img-fluid"
+                  src={budget.user.avatar}
+                  alt={budget.user.name}
+                />
+                <p className="text-center">logged as:</p>
+                <h1 className="text-center">{budget.user.name}</h1>
+              </div>
+              <div className="col-xs-12 col-sm-4 col-lg-6 item-align-center my-4">
+                <h4 className="text-lead budget-name">your budget name:</h4>
+                <h3 className="text-center">{budget.name}</h3>
+                <div className="total-value form-wrapper">
+                  <h1 className="display-4">Total:</h1>
+                  <h1 className="budet-total">2137.99</h1>
+                </div>
+                <br />
+                <AddNewItem />
+              </div>
+            </div>
             <br />
             <BudgetItem BudgetItem={budget.data} />
           </div>

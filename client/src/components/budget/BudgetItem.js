@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-// import Moment from "react-moment";
+import Moment from "react-moment";
 import { deleteBudgetItem } from "../../actions/budgetActions";
 
 class BudgetItem extends Component {
@@ -12,14 +12,16 @@ class BudgetItem extends Component {
   render() {
     const budgetItem = this.props.BudgetItem.map(data => (
       <tr key={data._id}>
-        <td>{data.user}</td>
+        {/* <td>{data.user}</td> */}
         <td>{data.value}</td>
         <td>{data.description}</td>
-        <td>{data.date}</td>
+        <td>
+          <Moment format="DD/MM/YYYY HH:mm">{data.date}</Moment>
+        </td>
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, data._id)}
-            className="btn btn-outline-info float-right"
+            className="btn btn-outline-info"
           >
             Delete
           </button>
@@ -32,7 +34,7 @@ class BudgetItem extends Component {
         <table className="table table-hover">
           <thead className="">
             <tr>
-              <th>User</th>
+              {/* <th>User</th> */}
               <th>Value</th>
               <th>Description</th>
               <th>Date</th>

@@ -131,6 +131,19 @@ router.post(
   }
 );
 
+// @route   GET api/budget/data
+// @desc    Get count value from data in budget
+// @access  Private
+router.get(
+  "/data",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    Budget.aggregate([{ $match: {} }, { $group: {} }]);
+  }
+);
+
 // @route   POST api/budget/data
 // @desc    Add data to budget
 // @access  Private

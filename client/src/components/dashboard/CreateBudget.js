@@ -48,7 +48,7 @@ class CreateBudget extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h1 className=" lead text-center">add your budget</h1>
+              <h1 className="lead text-center">add your budget</h1>
               <form onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   type="text"

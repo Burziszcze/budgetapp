@@ -47,7 +47,9 @@ body {
 .navbar-toggler-icon {
   background-color: teal;
 }
-
+.clear-padd {
+  padding: 0;
+}
 .form-wrapper {
   background: rgba(0, 0, 0, 0.4);
   border-radius: 5px;

@@ -53,40 +53,44 @@ class AddToBudget extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="add-to-budget">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <Link to="/dashboard" className="btn btn-outline-light">
-                Go Back
-              </Link>
-              <h3 className="text-white text-center">
-                Add New Item to your budget
-              </h3>
-              <form onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="description"
-                  name="description"
-                  type="text"
-                  value={this.state.description}
-                  onChange={this.onChange}
-                  error={errors.description}
-                />
-                <TextFieldGroup
-                  placeholder="value"
-                  name="value"
-                  type="Number"
-                  value={this.state.value}
-                  onChange={this.onChange}
-                  error={errors.value}
-                />
-                <input
-                  type="submit"
-                  value="Submit"
-                  className="btn btn-outline-light btn-block"
-                />
-              </form>
-            </div>
+      <div className="add-to-budget form-wrapper">
+        <Link to="/dashboard" className="btn btn-outline-light">
+          Go Back
+        </Link>
+        <h1 className="display-4 text-center">Add new Item</h1>
+        <div className="row">
+          <div className="col-sm-12">
+            <form onSubmit={this.onSubmit}>
+              <div className="form-row ">
+                <div className="col-sm-7">
+                  <TextFieldGroup
+                    placeholder="description"
+                    name="description"
+                    type="text"
+                    value={this.state.description}
+                    onChange={this.onChange}
+                    error={errors.description}
+                  />
+                </div>
+                <div className="col-sm-3">
+                  <TextFieldGroup
+                    placeholder="value"
+                    name="value"
+                    type="Number"
+                    value={this.state.value}
+                    onChange={this.onChange}
+                    error={errors.value}
+                  />
+                </div>
+                <div className="col-auto">
+                  <input
+                    type="submit"
+                    value="Add"
+                    className="btn btn-lg btn-outline-success"
+                  />
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
