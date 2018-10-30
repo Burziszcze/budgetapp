@@ -7,3 +7,4 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const GET_BUDGET = "GET_BUDGET";
 export const BUDGET_LOADING = "BUDGET_LOADING";
 export const CLEAR_CURRENT_BUDGET = "CLEAR_CURRENT_BUDGET";
+// export const GET_TOTAL = "GET_TOTAL";

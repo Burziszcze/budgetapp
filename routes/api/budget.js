@@ -91,11 +91,8 @@ router.post(
     // Get fields
     const budgetFields = {};
     budgetFields.user = req.user.id;
+
     if (req.body.name) budgetFields.name = req.body.name;
-    // if (req.body.total) budgetFields.total = req.body.total;
-    // if (req.body.title) budgetFields.title = req.body.title;
-    // if (req.body.description) budgetFields.description = req.body.description;
-    // if (req.body.price) budgetFields.price = req.body.price;
 
     Budget.findOne({
       user: req.user.id
@@ -131,19 +128,6 @@ router.post(
   }
 );
 
-// @route   GET api/budget/data
-// @desc    Get count value from data in budget
-// @access  Private
-router.get(
-  "/data",
-  passport.authenticate("jwt", {
-    session: false
-  }),
-  (req, res) => {
-    Budget.aggregate([{ $match: {} }, { $group: {} }]);
-  }
-);
-
 // @route   POST api/budget/data
 // @desc    Add data to budget
 // @access  Private
@@ -173,6 +157,38 @@ router.post(
       budget.data.unshift(newData);
       budget.save().then(budget => res.json(budget));
     });
+  }
+);
+
+// @route   GET api/budget/data/total
+// @desc    Get count value from budget
+// @access  Private
+router.get(
+  "/data/total",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    const user_id = req.user.id;
+    const ObjectId = id => mongoose.Types.ObjectId(id);
+
+    Budget.aggregate([
+      {
+        $match: {
+          user: ObjectId(user_id)
+        }
+      },
+      {
+        $project: {
+          _id: "$_id",
+          user: "$user",
+          items: "$data.value",
+          total: { $sum: "$data.value" }
+        }
+      }
+    ])
+      .then(total => res.json(total))
+      .catch(err => res.status(404).json(err));
   }
 );
 

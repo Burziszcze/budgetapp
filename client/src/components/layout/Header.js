@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+// import { clearCurrentProfile } from '../../actions/profileActions';
 import { clearCurrentBudget } from "../../actions/budgetActions";
 
 class Header extends Component {
@@ -23,13 +24,13 @@ class Header extends Component {
           </Link>
         </li>
         <li className="nav-item">
-          <a href="" className="nav-link text-light">
+          <Link to="" className="nav-link text-light">
             Welcome {user.name}
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a
-            href=""
+          <Link
+            to=""
             className="nav-link"
             onClick={this.onLogoutClick.bind(this)}
           >
@@ -41,7 +42,7 @@ class Header extends Component {
               style={{ width: "25px", marginRight: "5px" }}
             />
             Logout
-          </a>
+          </Link>
         </li>
       </ul>
     );

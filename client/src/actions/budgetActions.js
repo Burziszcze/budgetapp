@@ -47,6 +47,25 @@ export const getBudgetByHandle = budget => dispatch => {
     );
 };
 
+// Get total value from budget
+export const getTotalValue = () => dispatch => {
+  dispatch(setBudgetLoading());
+  axios
+    .get("/api/budget/data/total")
+    .then(res =>
+      dispatch({
+        type: GET_BUDGET,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_BUDGET,
+        payload: {}
+      })
+    );
+};
+
 // Create Budget
 export const createBudget = (budgetData, history) => dispatch => {
   axios
@@ -73,7 +92,7 @@ export const addBudgetItem = (budgetData, history) => dispatch => {
     );
 };
 
-// Delete delete budget item
+// Delete budget item
 export const deleteBudgetItem = id => dispatch => {
   swal({
     title: "Are you sure?",
