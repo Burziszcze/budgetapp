@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
-import TextFieldGroup from '../common/TextFieldGroup';
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/TextFieldGroup";
 
 class Login extends Component {
   constructor() {
@@ -19,13 +19,13 @@ class Login extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push("/dashboard");
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
+      this.props.history.push("/dashboard");
     }
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
@@ -52,9 +52,7 @@ class Login extends Component {
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">
-                Sign in to your account
-              </p>
+              <p className="lead text-center">Sign in to your account</p>
               <form className="form-signin" onSubmit={this.onSubmit}>
                 <TextFieldGroup
                   className="form-signin"
@@ -64,6 +62,7 @@ class Login extends Component {
                   value={this.state.email}
                   onChange={this.onChange}
                   error={errors.email}
+                  info="test@gmail.com"
                 />
                 <TextFieldGroup
                   className="form-signin"
@@ -73,6 +72,7 @@ class Login extends Component {
                   value={this.state.password}
                   onChange={this.onChange}
                   error={errors.password}
+                  info="test123"
                 />
                 <input type="submit" className="btn btn-light btn-block mt-4" />
               </form>
@@ -88,12 +88,14 @@ Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-}
+};
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
-
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
