@@ -18,7 +18,6 @@ export const getCurrentBudget = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_BUDGET,
-        GET_TOTAL,
         payload: res.data
       })
     )

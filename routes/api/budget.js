@@ -181,7 +181,7 @@ router.get(
       {
         $project: {
           _id: "$_id",
-          // user: "$user",
+          user: "$user",
           // items: "$data.value",
           value: { $sum: "$data.value" }
         }

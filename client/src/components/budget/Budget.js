@@ -13,7 +13,6 @@ class Budget extends Component {
     if (nextProps.budget.budget === null && this.props.budget.loading) {
       this.props.history.push("/not-found");
     }
-    // this.props.getTotalValue();
   }
   render() {
     const { budget, loading, total } = this.props.budget;
