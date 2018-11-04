@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   getCurrentBudget,
+  getTotalValue,
   deleteAccount,
   deleteBudget
 } from "../../actions/budgetActions";
@@ -16,6 +17,7 @@ class Dashboard extends Component {
       this.props.getBudgetByHandle(this.props.match.params.handle);
     }
     this.props.getCurrentBudget();
+    this.props.getTotalValue();
   }
 
   onDeleteClick(e) {
@@ -100,15 +102,17 @@ Dashboard.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   deleteBudget: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  budget: PropTypes.object.isRequired
+  budget: PropTypes.object.isRequired,
+  total: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   budget: state.budget,
+  total: state.budget,
   auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentBudget, deleteAccount, deleteBudget }
+  { getCurrentBudget, deleteAccount, deleteBudget, getTotalValue }
 )(Dashboard);

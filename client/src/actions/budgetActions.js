@@ -30,7 +30,7 @@ export const getCurrentBudget = () => dispatch => {
 };
 
 export const getTotalValue = () => dispatch => {
-  // dispatch(setBudgetLoading());
+  dispatch(setBudgetLoading());
   axios
     .get("/api/budget/data/total")
     .then(res =>

@@ -6,13 +6,11 @@ import BudgetItem from "./BudgetItem";
 import { getBudgetByHandle, getTotalValue } from "../../actions/budgetActions";
 
 class Budget extends Component {
-  componentDidMount() {
-    this.props.getTotalValue();
-  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.budget.budget === null && this.props.budget.loading) {
       this.props.history.push("/not-found");
     }
+    this.props.getTotalValue();
   }
   render() {
     const { budget, loading, total } = this.props.budget;
@@ -67,12 +65,13 @@ class Budget extends Component {
 
 Budget.propTypes = {
   getBudgetByHandle: PropTypes.func.isRequired,
-  budget: PropTypes.object.isRequired
+  budget: PropTypes.object.isRequired,
+  total: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   budget: state.budget,
-  total: state.total
+  total: state.budget
 });
 
 export default connect(

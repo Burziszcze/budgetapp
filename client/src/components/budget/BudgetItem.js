@@ -13,7 +13,7 @@ class BudgetItem extends Component {
     const budgetItem = this.props.BudgetItem.map(data => (
       <tr key={data._id}>
         {/* <td>{data.user}</td> */}
-        <td>{data.value}</td>
+        <td>{data.value} PLN</td>
         <td>{data.description}</td>
         <td>
           <Moment format="DD/MM/YYYY HH:mm">{data.date}</Moment>

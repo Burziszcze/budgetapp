@@ -11,15 +11,6 @@ const Budget = require("../../models/Budget");
 // Load User Model
 const User = require("../../models/User");
 
-// @route   GET api/budget/test
-// @desc    Tests budget route
-// @access  Public
-router.get("/test", (req, res) =>
-  res.json({
-    msg: "budget route works!"
-  })
-);
-
 // @route   GET api/budget
 // @desc    Get current user budget
 // @access  Private

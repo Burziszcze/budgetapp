@@ -7,7 +7,6 @@ import {
 
 const initialState = {
   budget: null,
-  total: null,
   loading: false
 };
 
