@@ -3,17 +3,20 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import AddNewItem from "../dashboard/AddNewItem";
 import BudgetItem from "./BudgetItem";
-import { getBudgetByHandle } from "../../actions/budgetActions";
+import { getBudgetByHandle, getTotalValue } from "../../actions/budgetActions";
 
 class Budget extends Component {
+  componentDidMount() {
+    this.props.getTotalValue();
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.budget.budget === null && this.props.budget.loading) {
       this.props.history.push("/not-found");
     }
+    // this.props.getTotalValue();
   }
-
   render() {
-    const { budget, loading } = this.props.budget;
+    const { budget, loading, total } = this.props.budget;
 
     let budgetContent;
 
@@ -38,7 +41,7 @@ class Budget extends Component {
                 <h3 className="text-center">{budget.name}</h3>
                 <div className="total-value form-wrapper">
                   <h1 className="display-4">Total:</h1>
-                  <h1 className="budet-total">21.37</h1>
+                  <h1 className="budet-total">{total} PLN</h1>
                 </div>
                 <br />
                 <AddNewItem />
@@ -69,12 +72,14 @@ Budget.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  budget: state.budget
+  budget: state.budget,
+  total: state.total
 });
 
 export default connect(
   mapStateToProps,
   {
-    getBudgetByHandle
+    getBudgetByHandle,
+    getTotalValue
   }
 )(Budget);

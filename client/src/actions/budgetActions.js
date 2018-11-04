@@ -3,6 +3,7 @@ import swal from "sweetalert";
 
 import {
   GET_BUDGET,
+  GET_TOTAL,
   GET_ERRORS,
   BUDGET_LOADING,
   CLEAR_CURRENT_BUDGET,
@@ -17,12 +18,31 @@ export const getCurrentBudget = () => dispatch => {
     .then(res =>
       dispatch({
         type: GET_BUDGET,
+        GET_TOTAL,
         payload: res.data
       })
     )
     .catch(err =>
       dispatch({
         type: GET_BUDGET,
+        payload: {}
+      })
+    );
+};
+
+export const getTotalValue = () => dispatch => {
+  // dispatch(setBudgetLoading());
+  axios
+    .get("/api/budget/data/total")
+    .then(res =>
+      dispatch({
+        type: GET_TOTAL,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
         payload: {}
       })
     );
@@ -43,25 +63,6 @@ export const getBudgetByHandle = budget => dispatch => {
       dispatch({
         type: GET_BUDGET,
         payload: null
-      })
-    );
-};
-
-// Get total value from budget
-export const getTotalValue = () => dispatch => {
-  dispatch(setBudgetLoading());
-  axios
-    .get("/api/budget/data/total")
-    .then(res =>
-      dispatch({
-        type: GET_BUDGET,
-        payload: res.data
-      })
-    )
-    .catch(err =>
-      dispatch({
-        type: GET_BUDGET,
-        payload: {}
       })
     );
 };

@@ -1,11 +1,13 @@
 import {
   GET_BUDGET,
+  GET_TOTAL,
   BUDGET_LOADING,
   CLEAR_CURRENT_BUDGET
 } from "../actions/types";
 
 const initialState = {
   budget: null,
+  total: null,
   loading: false
 };
 
@@ -20,6 +22,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         budget: action.payload,
+        loading: false
+      };
+    case GET_TOTAL:
+      return {
+        ...state,
+        total: action.payload,
         loading: false
       };
     case CLEAR_CURRENT_BUDGET:

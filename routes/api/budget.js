@@ -181,13 +181,13 @@ router.get(
       {
         $project: {
           _id: "$_id",
-          user: "$user",
-          items: "$data.value",
-          total: { $sum: "$data.value" }
+          // user: "$user",
+          // items: "$data.value",
+          value: { $sum: "$data.value" }
         }
       }
     ])
-      .then(total => res.json(total))
+      .then(total => res.json(total[0].value))
       .catch(err => res.status(404).json(err));
   }
 );
