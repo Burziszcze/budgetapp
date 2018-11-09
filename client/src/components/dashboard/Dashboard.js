@@ -19,7 +19,6 @@ class Dashboard extends Component {
     this.props.getCurrentBudget();
     this.props.getTotalValue();
   }
-
   onDeleteClick(e) {
     this.props.deleteAccount();
   }

@@ -7,7 +7,8 @@ import {
   GET_ERRORS,
   BUDGET_LOADING,
   CLEAR_CURRENT_BUDGET,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  TOTAL_LOADING
 } from "./types";
 
 // Get current profile
@@ -23,14 +24,14 @@ export const getCurrentBudget = () => dispatch => {
     )
     .catch(err =>
       dispatch({
-        type: GET_BUDGET,
+        type: GET_ERRORS,
         payload: {}
       })
     );
 };
 
 export const getTotalValue = () => dispatch => {
-  dispatch(setBudgetLoading());
+  dispatch(setTotalLoading());
   axios
     .get("/api/budget/data/total")
     .then(res =>
@@ -91,6 +92,13 @@ export const addBudgetItem = (budgetData, history) => dispatch => {
       })
     );
 };
+// Get multiple
+export const getTotalandBudget = () => {
+  return dispatch => {
+    dispatch(getTotalValue());
+    dispatch(getCurrentBudget());
+  };
+};
 
 // Delete budget item
 export const deleteBudgetItem = id => dispatch => {
@@ -102,17 +110,14 @@ export const deleteBudgetItem = id => dispatch => {
     dangerMode: true
   }).then(willDelete => {
     if (willDelete) {
-      swal("deleted!", {
-        icon: "success"
-      });
-      // Delete edu
       axios
         .delete(`/api/budget/data/${id}`)
         .then(res =>
-          dispatch({
-            type: GET_BUDGET,
-            payload: res.data
-          })
+          // dispatch({
+          //   type: GET_BUDGET,
+          //   payload: res.data
+          // })
+          dispatch(getTotalandBudget())
         )
         .catch(err =>
           dispatch({
@@ -194,10 +199,16 @@ export const deleteAccount = () => dispatch => {
   });
 };
 
-// Profile loading
+// Budget loading
 export const setBudgetLoading = () => {
   return {
     type: BUDGET_LOADING
+  };
+};
+
+export const setTotalLoading = () => {
+  return {
+    type: TOTAL_LOADING
   };
 };
 

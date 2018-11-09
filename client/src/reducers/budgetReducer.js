@@ -2,17 +2,24 @@ import {
   GET_BUDGET,
   GET_TOTAL,
   BUDGET_LOADING,
+  TOTAL_LOADING,
   CLEAR_CURRENT_BUDGET
 } from "../actions/types";
 
 const initialState = {
   budget: null,
+  total: null,
   loading: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case BUDGET_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
+    case TOTAL_LOADING:
       return {
         ...state,
         loading: true

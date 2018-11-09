@@ -10,7 +10,6 @@ class Budget extends Component {
     if (nextProps.budget.budget === null && this.props.budget.loading) {
       this.props.history.push("/not-found");
     }
-    this.props.getTotalValue();
   }
   render() {
     const { budget, loading, total } = this.props.budget;
@@ -24,7 +23,7 @@ class Budget extends Component {
         <div>
           <div className="budget clear-padd">
             <div className="row">
-              <div className="col-xs-12 col-sm-8 col-lg-6 form-wrapper">
+              {/* <div className="col-xs-12 col-sm-8 col-lg-6 form-wrapper">
                 <h1 className="dashboard-heading">Dashboard</h1>
                 <img
                   className="rounded-circle img-fluid"
@@ -32,8 +31,8 @@ class Budget extends Component {
                   alt={budget.user.name}
                 />
                 <h1 className="text-center">{budget.user.name}</h1>
-              </div>
-              <div className="col-xs-12 col-sm-4 col-lg-6 item-align-center my-4">
+              </div> */}
+              <div className="col-xs-12 col-lg-12 item-align-center my-4">
                 <h1 className="budget-name">your budget name:</h1>
                 <h3 className="text-center">{budget.name}</h3>
                 <div className="total-value form-wrapper">

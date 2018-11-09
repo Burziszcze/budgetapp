@@ -43,8 +43,8 @@ class AddToBudget extends Component {
 
   onCheck(e) {
     this.setState({
-      disabled: !this.state.disabled
-      //   current: !this.state.current
+      disabled: !this.state.disabled,
+      current: !this.state.current
     });
   }
 
@@ -99,12 +99,12 @@ class AddToBudget extends Component {
 
 AddToBudget.propTypes = {
   addBudgetItem: PropTypes.func.isRequired,
-  budget: PropTypes.object.isRequired,
+  total: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  budget: state.budget,
+  total: state.budget,
   errors: state.errors
 });
 

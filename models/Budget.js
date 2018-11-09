@@ -11,26 +11,24 @@ const BudgetSchema = new Schema({
     required: true,
     max: 20
   },
-  data: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: "users"
-      },
-      description: {
-        type: String,
-        required: true
-      },
-      value: {
-        type: Number,
-        required: true
-      },
-      date: {
-        type: Date,
-        default: Date.now
-      }
+  data: [{
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "users"
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    value: {
+      type: Number,
+      required: true
+    },
+    date: {
+      type: Date,
+      default: Date.now
     }
-  ],
+  }],
   date: {
     type: Date,
     default: Date.now
