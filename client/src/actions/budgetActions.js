@@ -148,7 +148,7 @@ export const deleteBudget = () => dispatch => {
         .delete("/api/budget")
         .then(res =>
           dispatch({
-            type: GET_BUDGET,
+            type: SET_CURRENT_USER,
             payload: {}
           })
         )

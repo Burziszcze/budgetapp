@@ -21,7 +21,7 @@ class BudgetItem extends Component {
         <td>
           <button
             onClick={this.onDeleteClick.bind(this, data._id)}
-            className="btn btn-outline-info"
+            className="btn btn-outline-primary"
           >
             Delete
           </button>
@@ -30,9 +30,9 @@ class BudgetItem extends Component {
     ));
     return (
       <div className="table-responsive">
-        <h4 className="mb-4">Current Items</h4>
+        <h3 className="mb-4 font-weight-light">Current Items</h3>
         <table className="table table-hover">
-          <thead className="">
+          <thead>
             <tr>
               {/* <th>User</th> */}
               <th>Value</th>
