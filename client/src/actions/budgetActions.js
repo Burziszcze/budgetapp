@@ -62,7 +62,7 @@ export const getBudgetByHandle = budget => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_BUDGET,
-        payload: null
+        payload: {}
       })
     );
 };
@@ -148,7 +148,7 @@ export const deleteBudget = () => dispatch => {
         .delete("/api/budget")
         .then(res =>
           dispatch({
-            type: SET_CURRENT_USER,
+            type: GET_BUDGET,
             payload: {}
           })
         )
